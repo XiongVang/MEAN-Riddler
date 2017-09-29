@@ -3,12 +3,12 @@ var app = express();
 var bodyParser = require( 'body-parser' );
 var port = 2232;
 var index = require( './modules/routes/index' );
-var messages = require( './modules/routes/messages' );
+var riddles = require( './modules/routes/riddles' );
 
 app.use( bodyParser.json() );
 app.use( express.static( 'public' ) );
 app.use( '/', index );
-app.use( '/messages', messages );
+app.use( '/riddles', riddles );
 
 app.listen( port, function(){
     console.log( 'server up on:', port );
