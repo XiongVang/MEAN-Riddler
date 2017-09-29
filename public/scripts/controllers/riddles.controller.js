@@ -1,6 +1,14 @@
 myApp.controller( 'RiddlesController', [ 'RiddlesService', function( RiddlesService ){
     console.log( 'NG' );
-    var vm=this;
+    var vm= this;
+    vm.sendMePunches = [];
+
+    vm.getRiddles = function () {
+        console.log('on getRidde')
+        RiddlesService.getRiddles().then(function (response) {
+            vm.sendMePunches = response.data;
+        });
+    }
 
     vm.addRiddle = function () {
         console.log('clikc add riddle!')
@@ -9,6 +17,15 @@ myApp.controller( 'RiddlesController', [ 'RiddlesService', function( RiddlesServ
             setup: vm.setupIn,
             punchline: vm.punchlineIn
         }
-        RiddlesService.postRiddle(riddleToAdd);
-    }//ENd addRiddles
+        RiddlesService.postRiddle(riddleToAdd).then( function (resp) {
+            console.log('response to POST:', resp)
+            vm.creatorIn = '';
+            vm.setupIn = '';
+            vm.punchlineIn = '';
+            vm.getRiddles();
+        }
+        );
+    }//ENd addRiddles 
+    vm.getRiddles();
+    
 }]);

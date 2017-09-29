@@ -7,7 +7,14 @@ mongoose.connect( 'mongodb://localhost:27017/canopusRiddles' );
 
 router.get( '/', function( req, res ){
     console.log( 'in riddles get' );
-    res.sendStatus(200);
+    Riddles.find({}, function(err, response){
+        if(err){
+            res.sendStatus (500);
+        }else {
+            res.send(response);
+        };
+    } 
+    );
 }); // end messages get
 
 router.post( '/', function( req, res ){
