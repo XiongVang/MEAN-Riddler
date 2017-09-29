@@ -8,6 +8,7 @@
         <script src = "scripts/client.js"></script>
         <script src = "scripts/services/riddles.service.js"></script>
         <script src = "scripts/controllers/riddles.controller.js"></script>
+        <link rel="stylesheet" href="styles/styles.css">
     </head>
     <body ng-app = "myApp">
         <main ng-controller = "RiddlesController as rc">
@@ -22,15 +23,17 @@
                 <h2>View Riddles</h2>
                 <!-- <div ng-repeat="riddle in rc.sendMePunches" > -->
                 
-                <h4>{{riddle.setup}}</h4>
-                <h4>{{riddle.punchline}}</h4>
-                <button>Punchline/Setup</button>
+                <h4 ng-if="rc.showSetup">{{rc.current.riddle.setup}}</h4>
+                <h4 ng-if="!rc.showSetup">{{rc.current.riddle.punchline}}</h4>
+
+                <button ng-click="rc.toggle()"> {{ rc.showSetup ? "Show Punchline" : "Show Setup" }}</button> <!-- ternary operator -->
+
                 <p>Creator:<b>{{riddle.creator}}</b></p>
-                
-                <button>prev</button>
-                <p>Riddle: x/y</p>
-                <button>next</button>
-            </div>
+
+                <button ng-click="rc.prevRiddle()" class="prev">prev</button>
+                <p class = "pagination">Riddle: {{rc.current.index + 1}}/ {{ rc.sendMePunches.length }}</p>
+                <button ng-click="rc.nextRiddle()" class="next">next</button>
+            <!-- </div> -->
             </section>
         </main>
     
