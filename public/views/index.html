@@ -28,7 +28,7 @@
 
                 <button ng-click="rc.toggle()"> {{ rc.showSetup ? "Show Punchline" : "Show Setup" }}</button> <!-- ternary operator -->
 
-                <p>Creator:<b>{{riddle.creator}}</b></p>
+                <p>Creator:<b>{{rc.current.riddle.creator}}</b></p>
 
                 <button ng-click="rc.prevRiddle()" class="prev">prev</button>
                 <p class = "pagination">Riddle: {{rc.current.index + 1}}/ {{ rc.sendMePunches.length }}</p>
