@@ -4,15 +4,19 @@
         <title>MEAN Riddle</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src = "vendors/angular.min.js"></script>
+        <script src = "scripts/client.js"></script>
+        <script src = "scripts/services/riddles.service.js"></script>
+        <script src = "scripts/controllers/riddles.controller.js"></script>
     </head>
-    <body>
-        <main>
+    <body ng-app = "myApp">
+        <main ng-controller = "RiddlesController as rc">
             <section id="add-riddle">
                 <h2>Add Riddle</h2>
-                <input type="text" placeholder="creator">
-                <input type="text" placeholder="setup">
-                <input type="text" placeholder="punchline">
-                <button>Add Riddle</button>
+                <input ng-model = "rc.creatorIn" type="text" placeholder="creator">
+                <input ng-model = "rc.setupIn" type="text" placeholder="setup">
+                <input ng-model = "rc.punchlineIn" type="text" placeholder="punchline">
+                <button ng-click = "rc.addRiddle()">Add Riddle</button>
             </section>
             <section id="view-riddles">
                 <h2>View Riddles</h2>
